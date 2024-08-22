@@ -7,15 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MotIF: Motion Instruction Fine-tuning</title>
-<!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV4ZJ9PVSV"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-FV4ZJ9PVSV');
-  </script> -->
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-W77JBH4NHE"></script>
 <script>
@@ -86,8 +78,6 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
 
-
-
 </head>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3WRXWGZ"
@@ -111,7 +101,6 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">MotIF: Motion Instruction Fine-tuning</h1>
-<!--          <h3 class="title is-4 conference-authors"><a target="_blank" href="https://2023.emnlp.org/">Under Review</a></h3>-->
           <div class="is-size-5 publication-authors">
             <span class="author-block"><a target="_blank" href="https://minyoung1005.github.io/">Minyoung Hwang</a><sup>1 †</sup>,</span>
             <span class="author-block"><a target="_blank" href="http://joeyhejna.com/">Joey Hejna</a><sup>2</sup>,</span>
@@ -184,92 +173,6 @@
 </section>
 
 
-<!--<section class="hero is-light is-small">-->
-<!--  <div class="hero-body">-->
-<!--    <div class="container">-->
-<!--      <div id="results-carousel" class="carousel results-carousel">-->
-<!--        <div class="item item-steve">-->
-<!--          <img src="media/procthor1_baseline.png">-->
-<!--          <img src="media/procthor1_baseline.gif" alt="Your GIF Image">-->
-<!--        </div>-->
-<!--        <div class="item item-chair-tp">-->
-<!--          <img src="media/procthor2_baseline.png">-->
-<!--          <img src="media/procthor2_baseline.gif" alt="Your GIF Image">-->
-<!--        </div>-->
-<!--         <div class="item item-shiba">-->
-<!--          <img src="media/procthor3_baseline.png">-->
-<!--          <img src="media/procthor1_baseline.gif" alt="Your GIF Image">-->
-<!--        </div>-->
-<!--        <div class="item item-fullbody">-->
-<!--          <video poster="" id="fullbody" autoplay muted loop height="100%">-->
-<!--            <source src="media/demo.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        <div class="item item-shiba">-->
-<!--          <video poster="" id="shiba" autoplay muted loop height="100%">-->
-<!--            <source src="media/demo.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        <div class="item item-blueshirt">-->
-<!--          <video poster="" id="blueshirt" autoplay muted loop height="100%">-->
-<!--            <source src="media/demo.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        <div class="item item-shiba">-->
-<!--          <video poster="" id="shiba" autoplay muted loop height="100%">-->
-<!--            <source src="media/demo.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--       <div class="item item-chair-tp">-->
-<!--          <video poster="" id="chair-tp" autoplay muted loop height="100%">-->
-<!--            <source src="media/demo.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--         <div class="item item-chair-tp">-->
-<!--          <video poster="" id="chair-tp" autoplay muted loop height="100%">-->
-<!--            <source src="media/demo.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--        </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
-
-
-
-
-<!--<section class="hero teaser">-->
-<!--  <div class="container is-fullhd">-->
-<!--    <div class="hero-body">-->
-<!--      <div class="container">-->
-<!--        <div class="columns is-vcentered  is-centered">-->
-<!--          <video id="teaser" autoplay muted loop height="100%">-->
-<!--            <source src="media/demo.mp4"-->
-<!--                    type="video/mp4">-->
-<!--          </video>-->
-<!--          </br>-->
-<!--        </div>-->
-<!--        <br>-->
-<!--        <h2 class="subtitle has-text-centered">-->
-<!--        <span class="dperact">AR2-D2's</span> demonstrations collection interface via an iPhone/iPad.-->
-<!--        </h2>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
-
-
-
-
 <section class="colored-section">
   <div class="container is-max-desktop is-full-fullhd">
     <!-- Abstract. -->
@@ -291,9 +194,6 @@
       </div>
     </div>
     <br>
-
-    <!--/ Abstract. -->
-
   </div>
 
 
@@ -323,10 +223,82 @@
   <div class="rows">
     <div class="row is-full-width">
       <h2 class="title is-3"><span class="dperact">MotIF-1K Dataset</span></h2>
-      <!-- <h3 class="title is-4">Diverse Human Preferences in Realistic Scenarios</h3> -->
+      <p>Various Motions for Each Task</p>
+
+      <h3 class="title is-4">Robot Demonstrations</h3>
+
+      <h4 class="title is-5">Task: </h3>
+        <div class="hero-body">
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="media/MotIF_all_motions_short.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Please don't feed me any meat."</div>
+              </div>
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_no_preference.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"I have no preference."</div>
+              </div>
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/fruits_preference_celery_ranch_strawberry_and_watermelon_both_chocolate_alternate.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"All celery with ranch first, then alternate bites <br>of rest with chocolate."</div>
+              </div>
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_fett_alternating.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Avoid feeding me the same thing twice."</div>
+              </div>
+              <!-- <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_nodip_banana_nodip_brownie.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Feed me all the banana plain and then all brownies plain."</div>
+              </div> -->
+              <!-- <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_spaghetti_alternating.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Alternate between spaghetti and meatballs."</div>
+              </div> -->
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_sausage_first.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Feed me all the sausage first.""</div>
+              </div>
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_dip_banana_nodip_brownie.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Feed me all the banana dipped in chocolate first and then all brownies plain."</div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       <!-- <p>
         blahblah
       </p> -->
+      <h3 class="title is-4">Human Demonstrations</h3>
+
+      <h3 class="title is-4">Grounded Annotations</h3>
       <table style="border-collapse: collapse; width: 100%;">
         <thead>
             <tr>
@@ -440,12 +412,12 @@
 
     </div>
   </div>
-</section>
+<!-- </section>
 
-      <br><br>
+<section> -->
 
-
-<section>
+  <br><br>
+  
   <div class="rows">
     <div class="row is-full-width">
       <h2 class="title is-3"><span class="dperact">Results</span></h2>
@@ -467,121 +439,54 @@
       </span>
       </p>
       <br><br>
-
-      <!-- <div class="columns is-vcentered is-centered">
-        <br>
-        <img src="media/trajectory_visualization_glow.png" class="interpolation-image" alt="Interpolate start reference image." style="width: 100%;" />
-      </div> -->
-
-
-      <!-- <h2 class="title is-3"><span class="dperact">Full Framework Demonstrations</span></h2>
-      <p>
-        We conduct real human experiments given the five scenarios as follows:
-        <ol>
-          <li><b>Urgent</b>: The user is getting late to an important meeting and needs to quickly find an object in the house.</li>
-          <li><b>Energy Conservation</b>: The user wants to check an appliance in the house while the user is away, but the robot that has a limited battery life.</li>
-          <li><b>New Home</b>: The user just moved in and wants to find which furniture or object is located while inspecting the layout of the house as a video.</li>
-          <li><b>Post-Rearrangement</b>: After rearranging the house, the user does not remember where certain objects were placed. The user wants to find a specific object, while also inspecting other areas to confirm the new arrangement.</li>
-          <li><b>Quiet Operation</b>: At midnight, the user wants to find an object in the house without disturbing a sleeping child with any loud noise.</li>
-        </ol>
-      </p>
-      <br> -->
-
-      
-      <!-- <p>
-        We conduct a quantitative and qualitative analysis to compare the agent's behavior. The <b>Curvature</b> and
-        <b>Success Weighted by Episode Length (SEL)</b> metrics show that our agent explores more effectively and travels
-        in much smoother paths. Excessive rotations and sudden changes in direction can lead to increased energy
-        consumption and increase the chances of collisions with other objects. Lower <b>SEL</b> achieved by our agent
-        shows that we can find the target object in much fewer steps. The qualitative examples below show that the
-        baseline agent performs lots of redundant rotations.
-
-      </p> -->
-
-
-<!--      <p>Overview of EmbCLIP-Codebook.</p>-->
-<!--      <h2 class="title is-3">Results</h2>-->
-<!--      <p>Results comparing to baselines</p>-->
-<!--      <img src="media/fig3.png" class="interpolation-image" alt="Interpolate start reference image." />-->
-<!--      <p>Results across other benchmark</p>-->
-<!--      <img src="media/fig4.png" class="interpolation-image" alt="Interpolate start reference image." />-->
-
-<!--      <p>Nearest-Neighbor Retrieval in the Goal-Conditioned Embedding Space</p>-->
-<!--      <img src="media/fig6.png" class="interpolation-image" alt="Interpolate start reference image." />-->
-<!--      <p>Examples of the navigation paths</p>-->
-<!--      <img src="media/top_down_maps2.png" class="interpolation-image" alt="Interpolate start reference image." />-->
     </div>
   </div>
-</section>
+
 
     <br>
 
     <h3 class="title is-4 ">Visualization of MotIF Outputs</h3>
 
-    <div class="columns is-vcentered is-centered">
+    <!-- <div class="columns is-vcentered is-centered">
         <br>
         <img src="media/CVPR2024_demo_video_human_demonstration.gif" class="interpolation-image" alt="Interpolate start reference image."
         style="width: 70%;" />
-    </div>
+    </div> -->
+    <br>
+    <p>blah blah</p>
 
-
-<!-- <section class="colored-section3">
-  <div class="rows is-centered">
+    
     <div class="container">
-    <div class="columns is-vcentered is-centered">
-      <div class="image-container">
-        <img src="media/procthor1_codebook.png" alt="PNG Image" class="equal-height">
-        <img src="media/procthor1_codebook.gif" alt="GIF Image" class="equal-height">
-        <h2 class="subtitle has-text-centered">
-          <span class="dnerf2"><b>EmbCLIP-Codebook (Ours)</b></span>
-        </h2>
+      <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="1">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay muted loop height="100%">
+            <source src="media/intro/1_handsan.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay muted loop height="100%">
+            <source src="media/intro/2_food_bin.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay muted loop height="100%">
+            <source src="media/intro/4_drawer.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay muted loop height="100%">
+            <source src="media/intro/3_marker.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        </div>
       </div>
-    </div>
-    <div class="columns is-vcentered is-centered">
-      <div class="image-container">
-        <img src="media/procthor1_baseline.png" alt="PNG Image" class="equal-height">
-        <img src="media/procthor1_baseline.gif" alt="GIF Image" class="equal-height">
-        <h2 class="subtitle has-text-centered">
-          <span class="dnerf2">EmbCLIP</span>
-        </h2>
-      </div>
-    </div>
-    </div>
-  </div>
-</section> -->
 
 
-<!-- <h2 class="subtitle has-text-centered">
-</br>
-  Our agent explores the environment much more effectively and travels in much smoother trajectories. Whereas the
-  <a href="https://github.com/allenai/embodied-clip">EmbCLIP</a> baseline agent makes many redundant rotations.
-</h2> -->
-<br>
-
-
-
-<!-- <section class="section">
-  <div class="container is-max-widescreen">
-
-    <div class="rows">
-      <h2 class="title is-3 centered-text">Ablation Studies</h2>
-      <p class="centered-text">We provide an analysis of the NEWTON dataset, focusing on potential ways of leveraging \dataset to enhance model performance in a physical reasoning context, and examining the consistency of LLMs with regard to model size, question polarity, and answer positioning. </p>
-          <img src="media/8.png" class="interpolation-image"
-           alt="Interpolate start reference image." />
-          </br>
-
-
-        <br/>
-
-
-
-
-
-    </div>
-
-  </div>
-
-</section> -->
+</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-widescreen content">

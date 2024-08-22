@@ -29,9 +29,12 @@ $(document).ready(function() {
 
     });
 
+    // Get slidesToShow value from the data attribute in HTML
+    var slidesToShow = parseInt($('#results-carousel').data('slides-to-show'), 10) || 1;
+
     var options = {
 			slidesToScroll: 1,
-			slidesToShow: 3,
+			slidesToShow: slidesToShow, // Use the variable here
 			loop: true,
 			infinite: true,
 			autoplay: false,
