@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="MotIF: Motion Instruction Fine-tuning">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MotIF: Motion Instruction Fine-tuning</title>
+<!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV4ZJ9PVSV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FV4ZJ9PVSV');
+  </script> -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W77JBH4NHE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W77JBH4NHE');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-T3WRXWGZ');</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    /* Define a CSS class for your section with a specific background color */
+    .colored-section {
+      background-color: #F8F8F8; /* Replace with your desired color code or name */
+      padding: 20px; /* Optional: Add padding for better spacing */
+    }
+
+    .colored-section2 {
+      background-color: #f3ebde; /* Replace with your desired color code or name */
+      padding: 20px; /* Optional: Add padding for better spacing */
+    }
+
+    .colored-section3 {
+      background-color: #f0eeee; /* Replace with your desired color code or name */
+      padding: 20px; /* Optional: Add padding for better spacing */
+    }
+
+    ol {
+      margin-left: 50px; /* Adjust the value to control the tab size */
+    }
+  </style>
+
+  <style>
+    .image-container {
+      display: inline-block;
+      margin: 10px; /* Add margin for spacing */
+    }
+
+    .equal-height {
+      height: 250px; /* Set the desired equal height for both images */
+    }
+  </style>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
+
+
+</head>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3WRXWGZ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<body onload="updateSingleVideo(); updateQpredVideo();">
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MotIF: Motion Instruction Fine-tuning</h1>
+<!--          <h3 class="title is-4 conference-authors"><a target="_blank" href="https://2023.emnlp.org/">Under Review</a></h3>-->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a target="_blank" href="https://minyoung1005.github.io/">Minyoung Hwang</a><sup>1 †</sup>,</span>
+            <span class="author-block"><a target="_blank" href="http://joeyhejna.com/">Joey Hejna</a><sup>2</sup>,</span>
+            <span class="author-block"><a target="_blank" href="https://dorsa.fyi/">Dorsa Sadigh</a><sup>2</sup>,</span>
+            <span class="author-block"><a target="_blank" href="https://yonatanbisk.com/">Yonatan Bisk</a><sup>3</sup>,</span>
+          </div>
+
+
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>MIT,</span>
+            <span class="author-block"><sup>2</sup>Stanford,</span>
+            <span class="author-block"><sup>3</sup>CMU</span>
+          </div>
+
+        <i><sup>†</sup>Work done during internship at CMU.</i>
+
+
+          <br><br>
+
+
+
+          <span class="link-block"><a target="_blank" href="" class="external-link
+          button is-normal is-rounded is-light"><span class="icon"><i class="fas fa-file"></i></span><span>ArXiv</span></a></span>
+
+          <!-- Code Link. -->
+          <span class="link-block"><a target="_blank" href="" class="external-link
+          button is-normal is-rounded is-light"><span class="icon"><i class="fab fa-github"></i></span><span>Training Code</span></a></span>
+
+          <span class="link-block"><a target="_blank" href="" class="external-link
+            button is-normal is-rounded is-light"><span class="icon"><i class="fab fa-github"></i></span><span>Dataset</span></a></span>
+<!--          <span class="link-block">-->
+<!--          <a target="_blank" href="" class="external-link button is-normal is-rounded is-dark">-->
+<!--            <span class="icon">-->
+<!--              <i class="fas fa-database" aria-hidden="true"></i>-->
+<!--            </span>-->
+<!--            <span>Dataset</span>-->
+<!--          </a>-->
+<!--        </span>-->
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-fullhd">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered is-centered">
+          <br>
+          <!-- <img src="media/multiple_human_users.gif" class="interpolation-image" width="800" alt="Interpolate start reference image." /> -->
+                   <video id="teaser" autoplay muted loop width="800" height="100%">
+                     <source src="media/MotIF_all_motions_short.mp4"
+                             type="video/mp4">
+                   </video>
+
+        </div>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf2"> 
+            <!-- How can we <font color="#9900FF"><i>effectively</i></font> customize a robot for human users? -->
+            <!-- We propose <i>Promptable Behaviors</i>, a novel personalization framework that deals with diverse preferences without re-training the agent. -->
+            Evaluating robot motions involves more than just the start and end states; it's about how the task is performed. We propose <font color="#9900FF">motion instruction fine-tuning (MotIF)</font> and <font color="#9900FF">MotIF-1K dataset</font> to improve VLMs' ability to understand nuanced robotic motions.
+        </span>
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--<section class="hero is-light is-small">-->
+<!--  <div class="hero-body">-->
+<!--    <div class="container">-->
+<!--      <div id="results-carousel" class="carousel results-carousel">-->
+<!--        <div class="item item-steve">-->
+<!--          <img src="media/procthor1_baseline.png">-->
+<!--          <img src="media/procthor1_baseline.gif" alt="Your GIF Image">-->
+<!--        </div>-->
+<!--        <div class="item item-chair-tp">-->
+<!--          <img src="media/procthor2_baseline.png">-->
+<!--          <img src="media/procthor2_baseline.gif" alt="Your GIF Image">-->
+<!--        </div>-->
+<!--         <div class="item item-shiba">-->
+<!--          <img src="media/procthor3_baseline.png">-->
+<!--          <img src="media/procthor1_baseline.gif" alt="Your GIF Image">-->
+<!--        </div>-->
+<!--        <div class="item item-fullbody">-->
+<!--          <video poster="" id="fullbody" autoplay muted loop height="100%">-->
+<!--            <source src="media/demo.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-shiba">-->
+<!--          <video poster="" id="shiba" autoplay muted loop height="100%">-->
+<!--            <source src="media/demo.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-blueshirt">-->
+<!--          <video poster="" id="blueshirt" autoplay muted loop height="100%">-->
+<!--            <source src="media/demo.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-shiba">-->
+<!--          <video poster="" id="shiba" autoplay muted loop height="100%">-->
+<!--            <source src="media/demo.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--       <div class="item item-chair-tp">-->
+<!--          <video poster="" id="chair-tp" autoplay muted loop height="100%">-->
+<!--            <source src="media/demo.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--         <div class="item item-chair-tp">-->
+<!--          <video poster="" id="chair-tp" autoplay muted loop height="100%">-->
+<!--            <source src="media/demo.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+
+
+<!--<section class="hero teaser">-->
+<!--  <div class="container is-fullhd">-->
+<!--    <div class="hero-body">-->
+<!--      <div class="container">-->
+<!--        <div class="columns is-vcentered  is-centered">-->
+<!--          <video id="teaser" autoplay muted loop height="100%">-->
+<!--            <source src="media/demo.mp4"-->
+<!--                    type="video/mp4">-->
+<!--          </video>-->
+<!--          </br>-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <h2 class="subtitle has-text-centered">-->
+<!--        <span class="dperact">AR2-D2's</span> demonstrations collection interface via an iPhone/iPad.-->
+<!--        </h2>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+
+
+<section class="colored-section">
+  <div class="container is-max-desktop is-full-fullhd">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <br/>
+          <p>
+            While success in many robotics tasks can be determined by only observing the final state and how it differs from the initial state - e.g., if an apple is picked up -- many tasks require observing the full motion of the robot to correctly determine success. This is not only because motions are sequential, but also because intermediate actions are necessary for understanding how the robot's motion is grounded in the environment. For example, a robot tasked with brushing someone's hair needs to have semantic grounding and understanding of its motion to recognize that different types of hair require different brushing trajectories. 
+            Prior works often use off-the-shelf vision-language models (VLMs) as success detectors; however, when success depends on the full trajectory, VLMs struggle to make correct judgments for two reasons. First, modern VLMs are trained only on single frames, and thus cannot capture changes over a full trajectory. Second, even if we provide state-of-the-art VLMs with an aggregate input of multiple frames, they still fail to correctly detect success due to a lack of robot data. 
+            Our key idea is to fine-tune VLMs using abstract representations that are able to capture trajectory-level information such as the path the robot takes by overlaying keypoints trajectories on the initial image. 
+            We propose motion instruction fine-tuning (MotIF), a method that fine-tunes VLMs using the aforementioned abstract representations to semantically ground the robot's behavior in the environment. 
+            To benchmark and fine-tune VLMs for robotic motion understanding, we introduce the MotIF-1K dataset containing 653 human and 369 robot demonstrations across 13 task categories.
+            MotIF assesses the success of robot motion given the image observation of the trajectory, task instruction, and motion description.
+            Our model significantly outperforms state-of-the-art VLMs by at least twice in precision and 56.1% in recall, generalizing across unseen motions, tasks, and environments. Finally, we demonstrate practical applications of MotIF in refining and terminating robot planning, and ranking trajectories on how they align with task and motion descriptions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <!--/ Abstract. -->
+
+  </div>
+
+
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+
+    <div class="rows">
+
+<style>
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .interpolation-image {
+    display: block;
+    margin: 20px 0;  /* Give some space above and below the image */
+  }
+</style>
+
+
+<section>
+  <div class="rows">
+    <div class="row is-full-width">
+      <h2 class="title is-3"><span class="dperact">MotIF-1K Dataset</span></h2>
+      <!-- <h3 class="title is-4">Diverse Human Preferences in Realistic Scenarios</h3> -->
+      <!-- <p>
+        blahblah
+      </p> -->
+      <table style="border-collapse: collapse; width: 100%;">
+        <thead>
+            <tr>
+                <th rowspan="2" style="border: 1px solid black; padding: 8px;">Category</th>
+                <th rowspan="2" style="border: 1px solid black; padding: 8px;">Task</th>
+                <th rowspan="2" style="border: 1px solid black; padding: 8px;">Motion Description Examples</th>
+                <th colspan="2" style="border: 1px solid black; padding: 8px;">Demonstrations</th>
+            </tr>
+            <tr>
+                <th style="border: 1px solid black; padding: 8px;">Human</th>
+                <th style="border: 1px solid black; padding: 8px;">Robot</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="3" style="border: 1px solid black; padding: 8px;">Non-Interactive</td>
+                <td style="border: 1px solid black; padding: 8px;">Outdoor Navigation</td>
+                <td style="border: 1px solid black; padding: 8px;">move in the shortest path<br>make a detour to the left and follow the walkway, avoiding moving over the grass</td>
+                <td style="border: 1px solid black; padding: 8px;"></td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Indoor Navigation</td>
+                <td style="border: 1px solid black; padding: 8px;">move in the shortest path<br>make a detour to the right of the long table, avoiding collision with chairs</td>
+                <td style="border: 1px solid black; padding: 8px;"></td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Draw Path</td>
+                <td style="border: 1px solid black; padding: 8px;">make a triangular motion clockwise<br>move upward and to the right</td>
+                <td style="border: 1px solid black; padding: 8px;"></td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td rowspan="6" style="border: 1px solid black; padding: 8px;">Object-Interactive</td>
+                <td style="border: 1px solid black; padding: 8px;">Shake</td>
+                <td style="border: 1px solid black; padding: 8px;">move up and down 4 times<br>completely flip the object to the right and flip it back to its initial state</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Pick and place</td>
+                <td style="border: 1px solid black; padding: 8px;">move downward and to the left<br>move downward while getting farther from &lt;obstacle&gt;, then move to the left</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Stir</td>
+                <td style="border: 1px solid black; padding: 8px;">make 2 circular motions counter-clockwise<br>move upward, then move downward while making diagonal oscillations</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Wipe</td>
+                <td style="border: 1px solid black; padding: 8px;">move to the right and move to the left, repeating this sequence 2 times<br>move to the right, making diagonal oscillations</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Open/Close the cabinet</td>
+                <td style="border: 1px solid black; padding: 8px;">move to the right<br>move upward and to the left</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Spread Condiment</td>
+                <td style="border: 1px solid black; padding: 8px;">move to the left and to the right<br>move to the left while making back and forth oscillations</td>
+                <td style="border: 1px solid black; padding: 8px;"></td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td rowspan="4" style="border: 1px solid black; padding: 8px;">User-Interactive</td>
+                <td style="border: 1px solid black; padding: 8px;">Handover</td>
+                <td style="border: 1px solid black; padding: 8px;">move upward and to the left<br>move downward and to the right following a concave curve</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;"></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Brush hair</td>
+                <td style="border: 1px solid black; padding: 8px;">move downward while making horizontal oscillations<br>make 5 strokes downward, increasing the starting height of each stroke</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Tidy hair</td>
+                <td style="border: 1px solid black; padding: 8px;">move downward and to the right following a convex curve<br>make a circular motion clockwise, move upward, then move downward and to the right</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 8px;">Style hair</td>
+                <td style="border: 1px solid black; padding: 8px;">move to the right shortly, then move to the left following a concave curve<br>make a circular motion clockwise, gradually increasing the radius of the circle</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+                <td style="border: 1px solid black; padding: 8px;">&#10003;</td>
+            </tr>
+        </tbody>
+    </table>    
+
+      <!-- <div class="columns is-vcentered is-centered">
+        <br>
+        <img src="media/app_table_1.png" class="interpolation-image" alt="Interpolate start reference image." style="width: 100%;" />
+      </div> -->
+      <br>
+
+      <p>
+        <span class="dnerf2">App. Table 1. <b>List of Tasks and Motion Descriptions.</b> The collected dataset contains 653 human and 369 robot demonstrations
+          across 13 task categories, 36 task instructions, and 239 motion descriptions. Checkmarks denote which agent (human/robot)
+          demonstrations exist for each task. The table provides two motion description examples for each task.
+      </span>
+      </p>
+
+    </div>
+  </div>
+</section>
+
+      <br><br>
+
+
+<section>
+  <div class="rows">
+    <div class="row is-full-width">
+      <h2 class="title is-3"><span class="dperact">Results</span></h2>
+      <h3 class="title is-4 ">How does MotIF compare to state-of-the-art VLMs?</h3>
+      <p>
+        App. Fig. 10 shows a toy scenario comparing GPT-4o, Gemini-1.5 Pro, and \MethodName, along a conversation between a user and an LLM (ChatGPT).
+        After three turns of conversation, we calculate the performance of motion discrimination using the VLMs. Results show that our model achieves the highest accuracy, precision, and recall, successfully understanding robotic motions in all cases. 
+      </p>
+      <br>
+
+      <div class="columns is-vcentered is-centered">
+        <br>
+        <img src="media/overview_boba.png" class="interpolation-image" alt="Interpolate start reference image." style="width: 100%;" />
+      </div>
+
+      <p>
+        <span class="dnerf2">App. Fig. 10. <b>Comparison between MotIF and state-of-the-art closed VLMs.</b>
+          We compare three VLMs: our model, GPT-4o, and Gemini-1.5 Pro, along a conversation between a user and an LLM. The user specifies the task and the LLM generates an appropriate motion description. The performance of each VLM is measured by predicting if the robot motions align (VLM response: 1) with motion descriptions suggested from the LLM or not (VLM response: 0), where the images are not included in training our model. Comparing the accuracy, precision, and recall for each model, MotIF shows the highest performance in all metrics.
+      </span>
+      </p>
+      <br><br>
+
+      <!-- <div class="columns is-vcentered is-centered">
+        <br>
+        <img src="media/trajectory_visualization_glow.png" class="interpolation-image" alt="Interpolate start reference image." style="width: 100%;" />
+      </div> -->
+
+
+      <!-- <h2 class="title is-3"><span class="dperact">Full Framework Demonstrations</span></h2>
+      <p>
+        We conduct real human experiments given the five scenarios as follows:
+        <ol>
+          <li><b>Urgent</b>: The user is getting late to an important meeting and needs to quickly find an object in the house.</li>
+          <li><b>Energy Conservation</b>: The user wants to check an appliance in the house while the user is away, but the robot that has a limited battery life.</li>
+          <li><b>New Home</b>: The user just moved in and wants to find which furniture or object is located while inspecting the layout of the house as a video.</li>
+          <li><b>Post-Rearrangement</b>: After rearranging the house, the user does not remember where certain objects were placed. The user wants to find a specific object, while also inspecting other areas to confirm the new arrangement.</li>
+          <li><b>Quiet Operation</b>: At midnight, the user wants to find an object in the house without disturbing a sleeping child with any loud noise.</li>
+        </ol>
+      </p>
+      <br> -->
+
+      
+      <!-- <p>
+        We conduct a quantitative and qualitative analysis to compare the agent's behavior. The <b>Curvature</b> and
+        <b>Success Weighted by Episode Length (SEL)</b> metrics show that our agent explores more effectively and travels
+        in much smoother paths. Excessive rotations and sudden changes in direction can lead to increased energy
+        consumption and increase the chances of collisions with other objects. Lower <b>SEL</b> achieved by our agent
+        shows that we can find the target object in much fewer steps. The qualitative examples below show that the
+        baseline agent performs lots of redundant rotations.
+
+      </p> -->
+
+
+<!--      <p>Overview of EmbCLIP-Codebook.</p>-->
+<!--      <h2 class="title is-3">Results</h2>-->
+<!--      <p>Results comparing to baselines</p>-->
+<!--      <img src="media/fig3.png" class="interpolation-image" alt="Interpolate start reference image." />-->
+<!--      <p>Results across other benchmark</p>-->
+<!--      <img src="media/fig4.png" class="interpolation-image" alt="Interpolate start reference image." />-->
+
+<!--      <p>Nearest-Neighbor Retrieval in the Goal-Conditioned Embedding Space</p>-->
+<!--      <img src="media/fig6.png" class="interpolation-image" alt="Interpolate start reference image." />-->
+<!--      <p>Examples of the navigation paths</p>-->
+<!--      <img src="media/top_down_maps2.png" class="interpolation-image" alt="Interpolate start reference image." />-->
+    </div>
+  </div>
+</section>
+
+    <br>
+
+    <h3 class="title is-4 ">Visualization of MotIF Outputs</h3>
+
+    <div class="columns is-vcentered is-centered">
+        <br>
+        <img src="media/CVPR2024_demo_video_human_demonstration.gif" class="interpolation-image" alt="Interpolate start reference image."
+        style="width: 70%;" />
+    </div>
+
+
+<!-- <section class="colored-section3">
+  <div class="rows is-centered">
+    <div class="container">
+    <div class="columns is-vcentered is-centered">
+      <div class="image-container">
+        <img src="media/procthor1_codebook.png" alt="PNG Image" class="equal-height">
+        <img src="media/procthor1_codebook.gif" alt="GIF Image" class="equal-height">
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf2"><b>EmbCLIP-Codebook (Ours)</b></span>
+        </h2>
+      </div>
+    </div>
+    <div class="columns is-vcentered is-centered">
+      <div class="image-container">
+        <img src="media/procthor1_baseline.png" alt="PNG Image" class="equal-height">
+        <img src="media/procthor1_baseline.gif" alt="GIF Image" class="equal-height">
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf2">EmbCLIP</span>
+        </h2>
+      </div>
+    </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <h2 class="subtitle has-text-centered">
+</br>
+  Our agent explores the environment much more effectively and travels in much smoother trajectories. Whereas the
+  <a href="https://github.com/allenai/embodied-clip">EmbCLIP</a> baseline agent makes many redundant rotations.
+</h2> -->
+<br>
+
+
+
+<!-- <section class="section">
+  <div class="container is-max-widescreen">
+
+    <div class="rows">
+      <h2 class="title is-3 centered-text">Ablation Studies</h2>
+      <p class="centered-text">We provide an analysis of the NEWTON dataset, focusing on potential ways of leveraging \dataset to enhance model performance in a physical reasoning context, and examining the consistency of LLMs with regard to model size, question polarity, and answer positioning. </p>
+          <img src="media/8.png" class="interpolation-image"
+           alt="Interpolate start reference image." />
+          </br>
+
+
+        <br/>
+
+
+
+
+
+    </div>
+
+  </div>
+
+</section> -->
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-widescreen content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{hwang2024motif,
+  title     = {MotIF: Motion Instruction Fine-tuning},
+  author    = {Hwang, Minyoung and Hejna, Joey and Sadigh, Dorsa and Bisk, Yonatan},
+  booktitle = {arXiv preprint arXiv:TBD},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <p>
+            This website is based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website template</a>,
+            which is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+            Attribution-ShareAlike 4.0 International License</a> .
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
