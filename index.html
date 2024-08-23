@@ -929,11 +929,24 @@
     <div class="row is-full-width">
       <h2 class="title is-3"><span class="dperact">Results</span></h2>
       <h3 class="title is-4 ">How does MotIF compare to state-of-the-art VLMs?</h3>
-      <p>
-        App. Fig. 10 shows a toy scenario comparing GPT-4o, Gemini-1.5 Pro, and MotIF, along a conversation between a user and an LLM (ChatGPT).
-        After three turns of conversation, we calculate the performance of motion discrimination using the VLMs. Results show that our model achieves the highest accuracy, precision, and recall, successfully understanding robotic motions in all cases. 
+
+      <!-- <p>
+        aa
       </p>
-      <br>
+      <br> -->
+
+      <div class="columns is-vcentered is-centered">
+        <br>
+        <img src="media/motif_figure7.png" class="interpolation-image" alt="Interpolate start reference image." style="width: 100%;" />
+      </div>
+
+      <p>
+        <span class="dnerf2">Fig. 7. <b>Performance on MotIF-1K.</b>
+          (a) shows that our models outperforms state-of-the-art (SOTA) off-the-shelf models in validation and test splits.
+          (b) We explore motion representations in terms of single-frame vs. multi-frame and the effectiveness of trajectory drawing. Single-frame with trajectory drawing demonstrates the highest recall in the test split, while other motion representations falter. Our approach identifies valid motions effectively and generalizes better than baselines.
+      </span>
+      </p>
+      <br><br>
 
       <div class="columns is-vcentered is-centered">
         <br>
@@ -945,7 +958,14 @@
           We compare three VLMs: our model, GPT-4o, and Gemini-1.5 Pro, along a conversation between a user and an LLM. The user specifies the task and the LLM generates an appropriate motion description. The performance of each VLM is measured by predicting if the robot motions align (VLM response: 1) with motion descriptions suggested from the LLM or not (VLM response: 0), where the images are not included in training our model. Comparing the accuracy, precision, and recall for each model, MotIF shows the highest performance in all metrics.
       </span>
       </p>
-      <br><br>
+      <br>
+
+      <p>
+        App. Fig. 10 shows a toy scenario comparing GPT-4o, Gemini-1.5 Pro, and MotIF, along a conversation between a user and an LLM (ChatGPT).
+        After three turns of conversation, we calculate the performance of motion discrimination using the VLMs. Results show that our model achieves the highest accuracy, precision, and recall, successfully understanding robotic motions in all cases. 
+      </p>
+      <br>
+
     </div>
   </div>
 
