@@ -127,6 +127,30 @@
     }
   </style>
 
+  <style>
+    /* Ensure the video container is positioned relatively to contain the absolute caption */
+    .item {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Style the captions to appear on top of the video */
+    .caption {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 14px;
+      width: 90%; /* Adjust the width if needed */
+    }
+  </style>
+
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -275,12 +299,47 @@
   <div class="rows">
     <div class="row is-full-width">
       <h2 class="title is-3"><span class="dperact">MotIF-1K Dataset</span></h2>
-      <p>Various Motions for Each Task</p>
+      <p>Various tasks, various motions for Each Task, corresponding grounded annotations, blahblahblah</p>
+      <br>
 
-      <h3 class="title is-4">Robot Demonstrations</h3>
+      <h3 class="title is-4">Task Diversity</h3>
 
-      <h4 class="title is-5">Task: </h3>
-        <div class="hero-body">
+      <h4 class="title is-5">➤ Non-Interactive Tasks</h3>
+        <div class="container">
+          <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="media/MotIF_all_motions_short.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"Please don't feed me any meat."</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="assets/feeding_videos/ours_no_preference.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"I have no preference."</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="assets/feeding_videos/fruits_preference_celery_ranch_strawberry_and_watermelon_both_chocolate_alternate.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"All celery with ranch first, then alternate bites <br>of rest with chocolate."</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="assets/feeding_videos/ours_fett_alternating.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"Avoid feeding me the same thing twice."</div>
+            </div>
+          </div>
+        </div>
+        <br><br>
+
+        <h4 class="title is-5">➤ Object-Interactive Tasks</h3>
           <div class="container">
             <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
               <div class="item">
@@ -311,44 +370,125 @@
                 </video>
                 <div class="caption">"Avoid feeding me the same thing twice."</div>
               </div>
-              <!-- <div class="item">
-                <video poster="" autoplay muted loop height="100%">
-                  <source src="assets/feeding_videos/ours_nodip_banana_nodip_brownie.mp4"
-                          type="video/mp4">
-                </video>
-                <div class="caption">"Feed me all the banana plain and then all brownies plain."</div>
-              </div> -->
-              <!-- <div class="item">
-                <video poster="" autoplay muted loop height="100%">
-                  <source src="assets/feeding_videos/ours_spaghetti_alternating.mp4"
-                          type="video/mp4">
-                </video>
-                <div class="caption">"Alternate between spaghetti and meatballs."</div>
-              </div> -->
-              <div class="item">
-                <video poster="" autoplay muted loop height="100%">
-                  <source src="assets/feeding_videos/ours_sausage_first.mp4"
-                          type="video/mp4">
-                </video>
-                <div class="caption">"Feed me all the sausage first.""</div>
+            </div>
+          </div>
+          <br><br>
+
+          <h4 class="title is-5">➤ Human-Interactive Tasks</h3>
+            <div class="container">
+              <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
+                <div class="item">
+                  <video poster="" autoplay muted loop height="100%">
+                    <source src="media/MotIF_all_motions_short.mp4"
+                            type="video/mp4">
+                  </video>
+                  <div class="caption">"Please don't feed me any meat."</div>
+                </div>
+                <div class="item">
+                  <video poster="" autoplay muted loop height="100%">
+                    <source src="assets/feeding_videos/ours_no_preference.mp4"
+                            type="video/mp4">
+                  </video>
+                  <div class="caption">"I have no preference."</div>
+                </div>
+                <div class="item">
+                  <video poster="" autoplay muted loop height="100%">
+                    <source src="assets/feeding_videos/fruits_preference_celery_ranch_strawberry_and_watermelon_both_chocolate_alternate.mp4"
+                            type="video/mp4">
+                  </video>
+                  <div class="caption">"All celery with ranch first, then alternate bites <br>of rest with chocolate."</div>
+                </div>
+                <div class="item">
+                  <video poster="" autoplay muted loop height="100%">
+                    <source src="assets/feeding_videos/ours_fett_alternating.mp4"
+                            type="video/mp4">
+                  </video>
+                  <div class="caption">"Avoid feeding me the same thing twice."</div>
+                </div>
               </div>
-              <div class="item">
-                <video poster="" autoplay muted loop height="100%">
-                  <source src="assets/feeding_videos/ours_dip_banana_nodip_brownie.mp4"
-                          type="video/mp4">
-                </video>
-                <div class="caption">"Feed me all the banana dipped in chocolate first and then all brownies plain."</div>
-              </div>
-              </div>
+            </div>
+            <br><br><br>
+
+
+      <h3 class="title is-4">Human and Robot Demonstrations</h3>
+
+      <h4 class="title is-5">➤ Robot Demonstrations</h3>
+        <div class="container">
+          <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="media/MotIF_all_motions_short.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"Please don't feed me any meat."</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="assets/feeding_videos/ours_no_preference.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"I have no preference."</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="assets/feeding_videos/fruits_preference_celery_ranch_strawberry_and_watermelon_both_chocolate_alternate.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"All celery with ranch first, then alternate bites <br>of rest with chocolate."</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="assets/feeding_videos/ours_fett_alternating.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"Avoid feeding me the same thing twice."</div>
             </div>
           </div>
         </div>
+        <br><br>
+
+        <h4 class="title is-5">➤ Human Demonstrations</h3>
+          <div class="container">
+            <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="media/MotIF_all_motions_short.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Please don't feed me any meat."</div>
+              </div>
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_no_preference.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"I have no preference."</div>
+              </div>
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/fruits_preference_celery_ranch_strawberry_and_watermelon_both_chocolate_alternate.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"All celery with ranch first, then alternate bites <br>of rest with chocolate."</div>
+              </div>
+              <div class="item">
+                <video poster="" autoplay muted loop height="100%">
+                  <source src="assets/feeding_videos/ours_fett_alternating.mp4"
+                          type="video/mp4">
+                </video>
+                <div class="caption">"Avoid feeding me the same thing twice."</div>
+              </div>
+            </div>
+          </div>
+
+    </div>
 
 
       <!-- <p>
         blahblah
       </p> -->
-      <h3 class="title is-4">Human Demonstrations</h3>
+      <br><br>
+      
 
       <h3 class="title is-4">Grounded Annotations</h3>
       <table style="border-collapse: collapse; width: 100%;">
@@ -463,7 +603,7 @@
       </p>
 
     </div>
-  </div>
+  <!-- </div> -->
 <!-- </section>
 
 <section> -->
