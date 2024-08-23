@@ -188,6 +188,85 @@
     }
   </style>
 
+  <!-- <style>
+    .code-block {
+        background-color: #d4edda; /* Pastel green background */
+        border-radius: 8px; /* Rounded corners */
+        padding: 15px; /* Padding inside the box */
+        font-family: "Courier New", Courier, monospace; /* Code-like font */
+        font-size: 14px; /* Font size */
+        white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Space below the block */
+        overflow-x: auto; /* Horizontal scroll for long lines */
+    }
+  </style> -->
+
+  <style>
+    .code-block {
+        background-color: #f0f0f0; /* Light gray background */
+        border-radius: 12px; /* Rounded corners */
+        padding: 10px; /* Padding inside the box */
+        font-family: "Courier New", Courier, monospace; /* Code-like font */
+        font-size: 14px; /* Font size */
+        white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        color: #333; /* Text color */
+        margin-bottom: 20px; /* Space below the block */
+        overflow-x: auto; /* Horizontal scroll for long lines */
+        margin: 0 auto; /* Center the box */
+    }
+  </style>
+
+  <style>
+    .dropdown {
+        max-width: 600px;
+        margin: 20px auto;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        background-color: #f0f0f0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-header {
+        padding: 10px 15px;
+        cursor: pointer;
+        font-weight: bold;
+        background-color: #e0e0e0;
+        border-radius: 12px 12px 0 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown-header::before {
+        content: '\25BC'; /* Downward triangle */
+        margin-right: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown.open .dropdown-header::before {
+        transform: rotate(180deg); /* Rotate triangle when open */
+    }
+
+    .dropdown-content {
+        display: none;
+        padding: 15px;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 14px;
+        white-space: pre-wrap;
+        color: #333;
+    }
+
+    .dropdown.open .dropdown-content {
+        display: block;
+    }
+  </style>
+  <script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById('gpt4o-dropdown');
+        dropdown.classList.toggle('open');
+    }
+  </script>
+
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -1154,7 +1233,94 @@
           </table>
         </div>
       </div>
+      <br><br><br>
       
+      <h3 class="title is-4 ">Qualitative Analysis on Off-the-shelf VLMs</h3>
+      <p>Example Trajectory of a robot brushing hair. The robot is brushing the hair by moving downward, while making horizontal oscillations.</p>
+      <br>
+      <p>To assess the motion understanding capabilities of off-the-shelf VLMs, we conducted an experiment where GPT-4V and GPT-4o were asked to describe a robot's motion from a video of it brushing hair. Although GPT-4o generated a detailed response by extracting keyframes and detecting the trajectory, it ultimately failed to describe the specific shape of the motion or how it was grounded in the scene.</p>
+      <br>
+
+        <video id="teaser" autoplay muted loop height="30%">
+          <source src="media/traj129.mp4"
+                  type="video/mp4">
+        </video>
+        <!-- <div class="caption">"deliver lemonade"<br><font color="#ff9900">"move in the shortest path"</font></div> -->
+        <br>
+
+        <!-- <div class="item">
+          <video poster="" autoplay muted loop height="100%">
+            <source src="media/traj129.mp4"
+                    type="video/mp4">
+          </video>
+          <div class="caption">"deliver lemonade"<br><font color="#ff9900">"move in the shortest path"</font></div>
+        </div>
+        <br> -->
+
+        <p>The model is given a video of the robot's motion with the question prompt. The video does not include any trajectory visualization. Given the video, the model fails to describe the semantic meaning of the robot's motion.</p>
+        <br>
+
+        <div class="dropdown" id="gpt4o-dropdown">
+          <div class="dropdown-header" onclick="toggleDropdown()">
+              <!-- See GPT-4o response -->
+              See GPT-4o response
+          </div>
+          <div class="dropdown-content">
+              # Question<br>
+              Describe the robot's motion.<br><br>
+      
+              # GPT-4V Answer<br>
+              It seems you've uploaded a video file related to the robot's motion. Let's analyze the content of this video to describe the motion in detail. I'll review the video and provide a description of the robot's movements. Please hold on for a moment.<br><br>
+              The video is ready for viewing. Please watch the robot's motion in the video above. After viewing, I can help with any specific analysis or description you need about the robot's movements. If you have specific aspects of the motion you're interested in, such as speed, trajectory, or interaction with objects, let me know!<br><br>
+      
+              # GPT-4o Answer<br>
+              The first frame of the video shows the side view of a robot performing a task. To describe the robot's motion, I'll need to analyze the frames in the video to identify the movement pattern. I'll extract and analyze key frames to provide a detailed description of the motion.<br><br>
+              Let's proceed by extracting key frames and tracking the movement of the robot's end effector.<br><br>
+              The extracted key frames from the video show the robot's motion over time. To provide a detailed description of the robot's motion, let's analyze these frames:<br><br>
+              The robot's end effector appears to be moving in a specific path throughout the video.<br>
+              The trajectory includes several distinct positions and orientations at different times.<br>
+              To describe the motion more precisely, I will track the movement of the robot's end effector across these frames. This will help in visualizing and understanding the pattern of movement.<br><br>
+              The tracked positions of the robot's end effector across the frames indicate its motion pattern. Here is the detailed description of the robot's motion:<br><br>
+              Initial Position: The robot starts with the end effector near the top left quadrant of the frame.<br><br>
+              Motion Path: The end effector follows a somewhat curved path, moving diagonally towards the bottom right quadrant.<br><br>
+              Key Positions:<br>
+              Frame 1: (146, 166)<br>
+              Frame 2: (174, 173)<br>
+              Frame 3: (303, 221)<br>
+              Frame 4: (260, 236)<br>
+              Frame 5: (296, 245)<br>
+              Frame 6: (265, 225)<br>
+              Frame 7: (300, 266)<br>
+              Frame 8: (245, 282)<br>
+              Frame 9: (159, 258)<br>
+              Frame 10: (289, 319)<br>
+              Frame 11: (262, 353)<br>
+              Frame 12: (318, 336)<br><br>
+              Overall Trajectory: The robot's end effector moves in a non-linear path with variations in both the x and y directions, suggesting a complex motion.<br>
+              The movement is likely part of a task requiring precise positioning and orientation changes. If you have any specific aspects of the motion or additional details you'd like to focus on, please let me know!
+          </div>
+        </div>
+        <br><br>
+
+        <p>The model is given a video of the robot's motion with the robot's trajectory overlaid, and the question prompt.</p>
+
+        <div class="dropdown" id="gpt4o-toggle">
+            <div class="dropdown-header" onclick="toggleDropdown()">
+              See GPT-4o response
+            </div>
+            <div class="dropdown-content">
+                # GPT-4o Answer<br><br>
+                I've loaded the video of the robot's motion for the task of brushing hair. To provide a detailed description of the motion, I will analyze the video and describe the path and color change over time, along with the final position indicated by the red dot.<br><br>
+                Let's start by extracting key frames and analyzing the motion trajectory.<br>
+                &lt;12x1 storyboard displayed&gt;<br><br>
+                The key frames extracted from the video provide a visual representation of the robot's motion for the task of brushing hair. Here's a detailed description of the motion:<br><br>
+                Initial Position: The robot starts with the brush positioned near the top of the hair, as indicated by the white color at the beginning of the trajectory.<br><br>
+                Motion Path: The robot moves the brush in a downward stroke, following a smooth and continuous path. The color of the trajectory gradually changes from white to green, indicating the progression of time.<br><br>
+                Path Continuation: The robot completes the first downward stroke and moves the brush back up to the starting position, preparing for another stroke. The color of the line continues to change from white to green, showing the ongoing motion.<br><br>
+                Red Dot: The red dot at the end of the trajectory indicates the last position of the brush at the end of the video. This dot signifies the completion of the brushing motion.<br><br>
+                Overall, the robot's motion is characterized by a repetitive up-and-down brushing movement, with the color-changing line visualizing the time progression of the motion. The red dot marks the final position of the brush.
+            </div>
+        </div>
 
 </section>
 
