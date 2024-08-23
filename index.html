@@ -74,6 +74,59 @@
     }
   </style>
 
+  <style>
+    .two-column-layout {
+      display: flex;
+      gap: 20px; /* Space between columns */
+      align-items: flex-start; /* Aligns the items at the start of the container */
+    }
+
+    .left-column {
+      flex: 1; /* Takes up equal space with right column */
+    }
+
+    .right-column {
+      flex: 1; /* Takes up equal space with left column */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .greencheck {
+      color: green;
+      font-weight: bold;
+    }
+
+    /* Task Instruction Caption Style */
+    .task-instruction-caption {
+      background-color: #f2f2f2; /* Light gray background */
+      padding: 10px;
+      border-radius: 8px; /* Rounded corners */
+      text-align: center;
+      margin-bottom: 10px; /* Space between caption and image */
+      font-weight: bold;
+    }
+
+    /* Image style */
+    .interpolation-image {
+      width: 300px; /* Fixed width as requested */
+      display: block;
+      margin: 0 auto; /* Center the image horizontally */
+    }
+  </style>
+
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -422,7 +475,7 @@
       <h2 class="title is-3"><span class="dperact">Results</span></h2>
       <h3 class="title is-4 ">How does MotIF compare to state-of-the-art VLMs?</h3>
       <p>
-        App. Fig. 10 shows a toy scenario comparing GPT-4o, Gemini-1.5 Pro, and \MethodName, along a conversation between a user and an LLM (ChatGPT).
+        App. Fig. 10 shows a toy scenario comparing GPT-4o, Gemini-1.5 Pro, and MotIF, along a conversation between a user and an LLM (ChatGPT).
         After three turns of conversation, we calculate the performance of motion discrimination using the VLMs. Results show that our model achieves the highest accuracy, precision, and recall, successfully understanding robotic motions in all cases. 
       </p>
       <br>
@@ -452,16 +505,56 @@
         style="width: 70%;" />
     </div> -->
     <br>
-    <p>blah blah</p>
-
     
-    <div class="container">
+    <!-- <div class="container">
       <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="1">
         <div class="item item-steve">
           <video poster="" id="steve" autoplay muted loop height="100%">
             <source src="media/intro/1_handsan.mp4"
                     type="video/mp4">
           </video>
+          <div class="two-column-layout">
+            <div class="left-column">
+              <video poster="" id="steve" autoplay muted loop width="100%">
+                <source src="media/MotIF_all_motions_short.mp4" type="video/mp4">
+              </video>
+            </div>
+            
+            <div class="right-column">
+              <p>hihi</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Task Instruction: pick up the cup and place it to the lower left of the laptop</th>
+                    <th>MotIF Output</th>
+                    <th>Prediction Correctness</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Motion Description 1: move downward, then move to the left</td>
+                    <td>1</td>
+                    <td class="greencheck">&#10004;</td>
+                  </tr>
+                  <tr>
+                    <td>Motion Description 2: move farther from the laptop, move downward, then move to the left</td>
+                    <td>1</td>
+                    <td class="greencheck">&#10004;</td>
+                  </tr>
+                  <tr>
+                    <td>Motion Description 3: move downward and to the left, passing over the laptop</td>
+                    <td>0</td>
+                    <td class="greencheck">&#10004;</td>
+                  </tr>
+                  <tr>
+                    <td>Motion Description 4: move over the laptop</td>
+                    <td>0</td>
+                    <td class="greencheck">&#10004;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         <div class="item item-fullbody">
           <video poster="" id="fullbody" autoplay muted loop height="100%">
@@ -482,8 +575,210 @@
           </video>
         </div>
         </div>
+      </div> -->
+
+      <p>➤ While motion description <i>"move downward, then move to the left"</i> is included in the training data, our VLM generalizes to understanding unseen motion descriptions (row 2-4 in table).</p>
+      <br>
+
+      <div class="two-column-layout">
+        <div class="left-column">
+          <!-- Task Instruction Caption Above the Image -->
+          <div class="task-instruction-caption">Task Instruction: pick up the cup and place it to the lower left of the laptop</div>
+          
+          <!-- Image from the new table data -->
+          <div class="columns is-vcentered is-centered">
+            <img src="media/traj106.jpg" class="interpolation-image" alt="Interpolate start reference image." />
+          </div>
+        </div>
+        
+        <div class="right-column">
+          <table>
+            <thead>
+              <tr>
+                <th>Motion Description</th>
+                <th>MotIF Output</th>
+                <th>Prediction Correctness</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>move downward, then move to the left</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move farther from the laptop, move downward, then move to the left</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move downward and to the left, passing over the laptop</td>
+                <td>0</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move over the laptop</td>
+                <td>0</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
+      <br><br>
+
+      <p>➤ <strong>The following trajectory visualizes a motion in an <font color="#9900FF">unseen camera viewpoint</font>.</strong> For the 14<sup>th</sup> robot motion in the test split of \DatasetName, we get the output of MotIF on 4 different motion descriptions. Our model effectively understands the robot's motion in an unseen camera viewpoint.</p>
+      <br>
+
+      <div class="two-column-layout">
+        <div class="left-column">
+          <!-- Task Instruction Caption Above the Image -->
+          <div class="task-instruction-caption">Task Instruction: curl hair</div>
+          
+          <!-- Image from the new table data -->
+          <div class="columns is-vcentered is-centered">
+            <img src="media/traj14.jpg" class="interpolation-image" alt="Trajectory visualization image." />
+          </div>
+        </div>
+        
+        <div class="right-column">
+          <table>
+            <thead>
+              <tr>
+                <th>Motion Description</th>
+                <th>MotIF Output</th>
+                <th>Prediction Correctness</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>move downward, while making horizontal oscillations</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move downward, while making side-to-side movements</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move downward</td>
+                <td>0</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move downward, while making vertical oscillations</td>
+                <td>0</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <br><br>
+
+      <p>➤ <strong>The following trajectory visualizes a motion with an <font color="#9900FF">unseen object</font>.</strong> For the 166<sup>th</sup> robot motion in the test split of \DatasetName, we get the output of MotIF on 4 different motion descriptions. While the training data only contains motions of spreading condiments on pizza with parmesan cheese, our model effectively understands the robot's motion with an unseen object, parsley, accurately determining ground truth and aligning paraphrased motion descriptions with the robot's motion.</p>
+      <br>
+      
+      <div class="two-column-layout">
+        <div class="left-column">
+          <!-- Task Instruction Caption Above the Image -->
+          <div class="task-instruction-caption">Task Instruction: sprinkle parsley on pizza</div>
+          
+          <!-- Image from the new table data -->
+          <div class="columns is-vcentered is-centered">
+            <img src="media/traj166.jpg" class="interpolation-image" alt="Trajectory visualization image." style="width: 300px;" />
+          </div>
+        </div>
+        
+        <div class="right-column">
+          <table>
+            <thead>
+              <tr>
+                <th>Motion Description</th>
+                <th>MotIF Output</th>
+                <th>Prediction Correctness</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>move to the left, while making vertical oscillations and alternating rotations</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move to the left, while making vertical oscillations</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move to the left, while making vertical shaking movements</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move to the left in a straight line</td>
+                <td>0</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <br><br>
+
+      <p>➤ <strong>The following trajectory visualizes an <font color="#9900FF">unseen grounded motion</font>.</strong> For the 181<sup>th</sup> robot motion in the val split of \DatasetName, we get the output of MotIF on 4 different motion descriptions. The results show that our model effectively understands the semantic grounding of the robot's motion in a navigation task, such as moving over or making a detour to avoid a specific instance (e.g., manhole) in the environment.</p>
+      <br>
+      
+      <div class="two-column-layout">
+        <div class="left-column">
+          <!-- Task Instruction Caption Above the Image -->
+          <div class="task-instruction-caption">Task Instruction: deliver lemonade</div>
+          
+          <!-- Image from the new table data -->
+          <div class="columns is-vcentered is-centered">
+            <img src="media/traj181.jpg" class="interpolation-image" alt="Trajectory visualization image." style="width: 300px;" />
+          </div>
+        </div>
+        
+        <div class="right-column">
+          <table>
+            <thead>
+              <tr>
+                <th>Motion Description</th>
+                <th>MotIF Output</th>
+                <th>Prediction Correctness</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>make a detour to the right of the manhole</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move forward, making a detour to the right of the manhole</td>
+                <td>1</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move forward in the shortest path</td>
+                <td>0</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+              <tr>
+                <td>move forward in a straight line, moving over the manhole</td>
+                <td>0</td>
+                <td class="greencheck">&#10004;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
 
 </section>
 
