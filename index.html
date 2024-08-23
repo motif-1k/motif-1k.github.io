@@ -151,6 +151,43 @@
     }
   </style>
 
+  <style>
+    /* Flexbox layout for figure row */
+    .figure-row {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Caption styles with gray background and rounded corners */
+    .figure-caption {
+        background-color: #f2f2f2; /* Light gray background */
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 8px;
+    }
+
+    /* Style for individual figure items */
+    .figure-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 10px;
+    }
+
+    /* Ensuring all images have the same height */
+    .figure-item img {
+        height: 200px; /* Set a uniform height for all images */
+        width: auto; /* Maintain aspect ratio */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+  </style>
+
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
   </script>
@@ -557,20 +594,6 @@
           <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
             <div class="item">
               <video poster="" autoplay muted loop height="100%">
-                <source src="media/traj54_color_lemonade.mp4"
-                        type="video/mp4">
-              </video>
-              <div class="caption">"caption"</div>
-            </div>
-            <div class="item">
-              <video poster="" autoplay muted loop height="100%">
-                <source src="media/traj32_color_lemonade.mp4"
-                        type="video/mp4">
-              </video>
-              <div class="caption">"caption"</div>
-            </div>
-            <div class="item">
-              <video poster="" autoplay muted loop height="100%">
                 <source src="media/idx47_traj179.mp4"
                         type="video/mp4">
               </video>
@@ -579,6 +602,20 @@
             <div class="item">
               <video poster="" autoplay muted loop height="100%">
                 <source src="media/idx49_traj181.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"caption"</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="media/traj54_color_lemonade.mp4"
+                        type="video/mp4">
+              </video>
+              <div class="caption">"caption"</div>
+            </div>
+            <div class="item">
+              <video poster="" autoplay muted loop height="100%">
+                <source src="media/traj32_color_lemonade.mp4"
                         type="video/mp4">
               </video>
               <div class="caption">"caption"</div>
@@ -665,44 +702,27 @@
             <br><br>
 
           <h3 class="title is-4">Various Visual Motion Representations</h3>
+            <div class="figure-container">
 
-            <div class="container">
-              <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="3">
-                <div class="item">
-                  <video poster="" autoplay muted loop height="100%">
-                    <source src="media/MotIF_all_motions_short.mp4"
-                            type="video/mp4">
-                  </video>
-                  <div class="caption">"caption"</div>
-                </div>
-                <div class="item">
-                  <video poster="" autoplay muted loop height="100%">
-                    <source src="assets/feeding_videos/ours_no_preference.mp4"
-                            type="video/mp4">
-                  </video>
-                  <div class="caption">"caption"</div>
-                </div>
-                <div class="item">
-                  <video poster="" autoplay muted loop height="100%">
-                    <source src="assets/feeding_videos/fruits_preference_celery_ranch_strawberry_and_watermelon_both_chocolate_alternate.mp4"
-                            type="video/mp4">
-                  </video>
-                  <div class="caption">"caption"</div>
-                </div>
-                <div class="item">
-                  <video poster="" autoplay muted loop height="100%">
-                    <source src="assets/feeding_videos/ours_fett_alternating.mp4"
-                            type="video/mp4">
-                  </video>
-                  <div class="caption">"caption"</div>
-                </div>
-              </div>
-            </div>
-            <br><br>
+              <div class="figure-row">
+                  <div class="figure-item">
+                      <img src="media/traj135.jpg" alt="Single Keypoint">
+                      <div class="figure-caption">Single Keypoint</div>
+                  </div>
+                  <div class="figure-item">
+                      <img src="media/traj135_optical_flow.jpg" alt="Optical Flow">
+                      <div class="figure-caption">Optical Flow</div>
+                  </div>
+                  <div class="figure-item">
+                    <img src="media/traj135_1x2_cropped.jpg" alt="Optical Flow">
+                    <div class="figure-caption">2-frame Storyboard</div>
+                  </div>
+                  <div class="figure-item">
+                    <img src="media/traj135_2x2_storyboard_cropped.jpg" alt="Optical Flow">
+                    <div class="figure-caption">4-frame Storyboard</div>
+                  </div>
+                 </div>
 
-      <!-- <p>
-        blahblah
-      </p> -->
       <br><br>
       
 
